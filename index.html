@@ -176,6 +176,20 @@
             color: #a3e635;
         }
 
+        .fixture-time {
+            text-align: center;
+            font-size: 0.75rem;
+            color: #a3e635;
+            margin-top: 0.25rem;
+        }
+
+        .result-time {
+            text-align: center;
+            font-size: 0.75rem;
+            color: #999;
+            margin-top: 0.5rem;
+        }
+
         /* Navigation tabs */
         .nav {
             display: flex;
@@ -213,6 +227,45 @@
         }
 
         .tab-content.active {
+            display: block;
+        }
+
+        /* Group selector */
+        .group-selector {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .group-btn {
+            padding: 0.5rem 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            color: #cccccc;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .group-btn:hover {
+            border-color: #a3e635;
+            color: #a3e635;
+        }
+
+        .group-btn.active {
+            background: #a3e635;
+            border-color: #a3e635;
+            color: #1a1a1a;
+        }
+
+        .group-content {
+            display: none;
+        }
+
+        .group-content.active {
             display: block;
         }
 
@@ -464,23 +517,59 @@
 
         <!-- Teams Tab -->
         <div id="teams" class="tab-content">
-            <section class="section">
-                <h2 class="section-title">Group A</h2>
-                <ul class="teams-list">
-                    <li>James Harris / Lewis Deane</li>
-                    <li>Adam Simms / Thomas Armstrong</li>
-                    <li>Angus Boyle / Callum Mackie</li>
-                    <li>Jack Lavery / James McKiver</li>
-                    <li>Chris Moffett / Kevin O'Hare</li>
-                    <li>Pete Boyle / Brian Dawson</li>
-                </ul>
-            </section>
+            <div class="group-selector">
+                <button class="group-btn active" onclick="showGroup('teams', 'A')">Group A</button>
+                <button class="group-btn" onclick="showGroup('teams', 'B')">Group B</button>
+                <button class="group-btn" onclick="showGroup('teams', 'C')">Group C</button>
+            </div>
+
+            <div id="teams-A" class="group-content active">
+                <section class="section">
+                    <h2 class="section-title">Group A</h2>
+                    <ul class="teams-list">
+                        <li>James Harris / Lewis Deane</li>
+                        <li>Adam Simms / Thomas Armstrong</li>
+                        <li>Angus Boyle / Callum Mackie</li>
+                        <li>Jack Lavery / James McKiver</li>
+                        <li>Chris Moffett / Kevin O'Hare</li>
+                        <li>Pete Boyle / Brian Dawson</li>
+                    </ul>
+                </section>
+            </div>
+
+            <div id="teams-B" class="group-content">
+                <section class="section">
+                    <h2 class="section-title">Group B</h2>
+                    <ul class="teams-list">
+                        <li>Michael Thompson / Ryan Kelly</li>
+                        <li>David Wilson / Mark Patterson</li>
+                        <li>Sean Murphy / Conor Hughes</li>
+                        <li>Paul Mitchell / Gary Stewart</li>
+                        <li>Stephen Clarke / Jamie Walsh</li>
+                        <li>Andrew Martin / Craig Brown</li>
+                    </ul>
+                </section>
+            </div>
+
+            <div id="teams-C" class="group-content">
+                <section class="section">
+                    <h2 class="section-title">Group C</h2>
+                    <ul class="teams-list">
+                        <li>Daniel O'Brien / Patrick Quinn</li>
+                        <li>Brendan Casey / Niall Doherty</li>
+                        <li>Kieran Flynn / Declan Murray</li>
+                        <li>Eoin Brennan / Cormac Gallagher</li>
+                        <li>Cathal Byrne / Ronan Duffy</li>
+                        <li>Oisin Kelly / Fionn McCarthy</li>
+                    </ul>
+                </section>
+            </div>
         </div>
 
         <!-- Schedule Tab -->
         <div id="schedule" class="tab-content">
             <section class="section">
-                <h2 class="section-title">Group A</h2>
+                <h2 class="section-title">League Schedule</h2>
 
                 <div class="schedule-item">
                     <div class="week-title">Week 1: <span class="week-dates">2<sup>nd</sup> to 8<sup>th</sup> Feb</span></div>
@@ -517,316 +606,736 @@
 
         <!-- Fixtures Tab -->
         <div id="fixtures" class="tab-content">
-            <section class="section">
-                <h2 class="section-title">Fixtures</h2>
+            <div class="group-selector">
+                <button class="group-btn active" onclick="showGroup('fixtures', 'A')">Group A</button>
+                <button class="group-btn" onclick="showGroup('fixtures', 'B')">Group B</button>
+                <button class="group-btn" onclick="showGroup('fixtures', 'C')">Group C</button>
+            </div>
 
-                <div class="week-selector">
-                    <button class="week-btn active" onclick="showWeek(1)">Week 1</button>
-                    <button class="week-btn" onclick="showWeek(2)">Week 2</button>
-                    <button class="week-btn" onclick="showWeek(3)">Week 3</button>
-                    <button class="week-btn" onclick="showWeek(4)">Week 4</button>
-                    <button class="week-btn" onclick="showWeek(5)">Week 5</button>
-                    <button class="week-btn" onclick="showWeek(6)">Week 6</button>
-                </div>
+            <!-- Group A Fixtures -->
+            <div id="fixtures-A" class="group-content active">
+                <section class="section">
+                    <h2 class="section-title">Group A Fixtures</h2>
 
-                <!-- Week 1 -->
-                <div id="week-1" class="fixtures-week active">
-                    <div class="fixture">
-                        <div class="fixture-teams">
-                            James Harris / Lewis Deane <span class="fixture-vs">vs</span> Adam Simms / Thomas Armstrong
-                        </div>
+                    <div class="week-selector">
+                        <button class="week-btn active" onclick="showWeek('A', 1)">Week 1</button>
+                        <button class="week-btn" onclick="showWeek('A', 2)">Week 2</button>
+                        <button class="week-btn" onclick="showWeek('A', 3)">Week 3</button>
+                        <button class="week-btn" onclick="showWeek('A', 4)">Week 4</button>
+                        <button class="week-btn" onclick="showWeek('A', 5)">Week 5</button>
+                        <button class="week-btn" onclick="showWeek('A', 6)">Week 6</button>
                     </div>
-                    <div class="fixture">
-                        <div class="fixture-teams">
-                            Angus Boyle / Callum Mackie <span class="fixture-vs">vs</span> Pete Boyle / Brian Dawson
-                        </div>
-                    </div>
-                    <div class="fixture">
-                        <div class="fixture-teams">
-                            Jack Lavery / James McKiver <span class="fixture-vs">vs</span> Chris Moffett / Kevin O'Hare
-                        </div>
-                    </div>
-                    <div class="fixture-note">
-                        Matches to be played on or before Friday 13<sup>th</sup> Feb
-                    </div>
-                </div>
 
-                <!-- Week 2 -->
-                <div id="week-2" class="fixtures-week">
-                    <div class="fixture">
-                        <div class="fixture-teams">
-                            James Harris / Lewis Deane <span class="fixture-vs">vs</span> Chris Moffett / Kevin O'Hare
+                    <div id="week-A-1" class="fixtures-week active">
+                        <div class="fixture">
+                            <div class="fixture-teams">James Harris / Lewis Deane <span class="fixture-vs">vs</span> Adam Simms / Thomas Armstrong</div>
                         </div>
-                    </div>
-                    <div class="fixture">
-                        <div class="fixture-teams">
-                            Pete Boyle / Brian Dawson <span class="fixture-vs">vs</span> Jack Lavery / James McKiver
+                        <div class="fixture">
+                            <div class="fixture-teams">Angus Boyle / Callum Mackie <span class="fixture-vs">vs</span> Pete Boyle / Brian Dawson</div>
                         </div>
-                        <div style="text-align: center; font-size: 0.75rem; color: #a3e635; margin-top: 0.25rem;">
-                            Wed 19th Feb | 20:30 | Court 5
+                        <div class="fixture">
+                            <div class="fixture-teams">Jack Lavery / James McKiver <span class="fixture-vs">vs</span> Chris Moffett / Kevin O'Hare</div>
+                            <div class="fixture-time">Thu 5th Feb | 21:30</div>
                         </div>
+                        <div class="fixture-note">Matches to be played on or before Friday 13<sup>th</sup> Feb</div>
                     </div>
-                    <div class="fixture">
-                        <div class="fixture-teams">
-                            Adam Simms / Thomas Armstrong <span class="fixture-vs">vs</span> Angus Boyle / Callum Mackie
-                        </div>
-                    </div>
-                    <div class="fixture-note">
-                        Matches to be played on or before Friday 20<sup>th</sup> Feb
-                    </div>
-                </div>
 
-                <!-- Week 3 -->
-                <div id="week-3" class="fixtures-week">
-                    <div class="fixture">
-                        <div class="fixture-teams">
-                            James Harris / Lewis Deane <span class="fixture-vs">vs</span> Jack Lavery / James McKiver
+                    <div id="week-A-2" class="fixtures-week">
+                        <div class="fixture">
+                            <div class="fixture-teams">James Harris / Lewis Deane <span class="fixture-vs">vs</span> Chris Moffett / Kevin O'Hare</div>
                         </div>
-                    </div>
-                    <div class="fixture">
-                        <div class="fixture-teams">
-                            Chris Moffett / Kevin O'Hare <span class="fixture-vs">vs</span> Angus Boyle / Callum Mackie
+                        <div class="fixture">
+                            <div class="fixture-teams">Pete Boyle / Brian Dawson <span class="fixture-vs">vs</span> Jack Lavery / James McKiver</div>
+                            <div class="fixture-time">Wed 19th Feb | 20:30 | Court 5</div>
                         </div>
-                    </div>
-                    <div class="fixture">
-                        <div class="fixture-teams">
-                            Pete Boyle / Brian Dawson <span class="fixture-vs">vs</span> Adam Simms / Thomas Armstrong
+                        <div class="fixture">
+                            <div class="fixture-teams">Adam Simms / Thomas Armstrong <span class="fixture-vs">vs</span> Angus Boyle / Callum Mackie</div>
                         </div>
+                        <div class="fixture-note">Matches to be played on or before Friday 20<sup>th</sup> Feb</div>
                     </div>
-                    <div class="fixture-note">
-                        Matches to be played on or before Friday 27<sup>th</sup> Feb
-                    </div>
-                </div>
 
-                <!-- Week 4 -->
-                <div id="week-4" class="fixtures-week">
-                    <div class="fixture">
-                        <div class="fixture-teams">
-                            James Harris / Lewis Deane <span class="fixture-vs">vs</span> Angus Boyle / Callum Mackie
+                    <div id="week-A-3" class="fixtures-week">
+                        <div class="fixture">
+                            <div class="fixture-teams">James Harris / Lewis Deane <span class="fixture-vs">vs</span> Jack Lavery / James McKiver</div>
                         </div>
-                    </div>
-                    <div class="fixture">
-                        <div class="fixture-teams">
-                            Jack Lavery / James McKiver <span class="fixture-vs">vs</span> Adam Simms / Thomas Armstrong
+                        <div class="fixture">
+                            <div class="fixture-teams">Chris Moffett / Kevin O'Hare <span class="fixture-vs">vs</span> Angus Boyle / Callum Mackie</div>
                         </div>
-                    </div>
-                    <div class="fixture">
-                        <div class="fixture-teams">
-                            Chris Moffett / Kevin O'Hare <span class="fixture-vs">vs</span> Pete Boyle / Brian Dawson
+                        <div class="fixture">
+                            <div class="fixture-teams">Pete Boyle / Brian Dawson <span class="fixture-vs">vs</span> Adam Simms / Thomas Armstrong</div>
                         </div>
+                        <div class="fixture-note">Matches to be played on or before Friday 27<sup>th</sup> Feb</div>
                     </div>
-                    <div class="fixture-note">
-                        Matches to be played on or before Friday 6<sup>th</sup> March
-                    </div>
-                </div>
 
-                <!-- Week 5 -->
-                <div id="week-5" class="fixtures-week">
-                    <div class="fixture">
-                        <div class="fixture-teams">
-                            James Harris / Lewis Deane <span class="fixture-vs">vs</span> Pete Boyle / Brian Dawson
+                    <div id="week-A-4" class="fixtures-week">
+                        <div class="fixture">
+                            <div class="fixture-teams">James Harris / Lewis Deane <span class="fixture-vs">vs</span> Angus Boyle / Callum Mackie</div>
                         </div>
-                    </div>
-                    <div class="fixture">
-                        <div class="fixture-teams">
-                            Adam Simms / Thomas Armstrong <span class="fixture-vs">vs</span> Chris Moffett / Kevin O'Hare
+                        <div class="fixture">
+                            <div class="fixture-teams">Jack Lavery / James McKiver <span class="fixture-vs">vs</span> Adam Simms / Thomas Armstrong</div>
                         </div>
-                    </div>
-                    <div class="fixture">
-                        <div class="fixture-teams">
-                            Angus Boyle / Callum Mackie <span class="fixture-vs">vs</span> Jack Lavery / James McKiver
+                        <div class="fixture">
+                            <div class="fixture-teams">Chris Moffett / Kevin O'Hare <span class="fixture-vs">vs</span> Pete Boyle / Brian Dawson</div>
                         </div>
+                        <div class="fixture-note">Matches to be played on or before Friday 6<sup>th</sup> March</div>
                     </div>
-                    <div class="fixture-note">
-                        Matches to be played on or before Sunday 8<sup>th</sup> March
-                    </div>
-                </div>
 
-                <!-- Week 6 -->
-                <div id="week-6" class="fixtures-week">
-                    <div class="fixture">
-                        <div class="fixture-teams">
-                            Finals Week
+                    <div id="week-A-5" class="fixtures-week">
+                        <div class="fixture">
+                            <div class="fixture-teams">James Harris / Lewis Deane <span class="fixture-vs">vs</span> Pete Boyle / Brian Dawson</div>
                         </div>
+                        <div class="fixture">
+                            <div class="fixture-teams">Adam Simms / Thomas Armstrong <span class="fixture-vs">vs</span> Chris Moffett / Kevin O'Hare</div>
+                        </div>
+                        <div class="fixture">
+                            <div class="fixture-teams">Angus Boyle / Callum Mackie <span class="fixture-vs">vs</span> Jack Lavery / James McKiver</div>
+                        </div>
+                        <div class="fixture-note">Matches to be played on or before Sunday 8<sup>th</sup> March</div>
                     </div>
-                    <div class="fixture-note">
-                        Further details will be announced in due course
+
+                    <div id="week-A-6" class="fixtures-week">
+                        <div class="fixture">
+                            <div class="fixture-teams">Finals Week</div>
+                        </div>
+                        <div class="fixture-note">Further details will be announced in due course</div>
                     </div>
-                </div>
-            </section>
+                </section>
+            </div>
+
+            <!-- Group B Fixtures -->
+            <div id="fixtures-B" class="group-content">
+                <section class="section">
+                    <h2 class="section-title">Group B Fixtures</h2>
+
+                    <div class="week-selector">
+                        <button class="week-btn active" onclick="showWeek('B', 1)">Week 1</button>
+                        <button class="week-btn" onclick="showWeek('B', 2)">Week 2</button>
+                        <button class="week-btn" onclick="showWeek('B', 3)">Week 3</button>
+                        <button class="week-btn" onclick="showWeek('B', 4)">Week 4</button>
+                        <button class="week-btn" onclick="showWeek('B', 5)">Week 5</button>
+                        <button class="week-btn" onclick="showWeek('B', 6)">Week 6</button>
+                    </div>
+
+                    <div id="week-B-1" class="fixtures-week active">
+                        <div class="fixture">
+                            <div class="fixture-teams">Michael Thompson / Ryan Kelly <span class="fixture-vs">vs</span> David Wilson / Mark Patterson</div>
+                        </div>
+                        <div class="fixture">
+                            <div class="fixture-teams">Sean Murphy / Conor Hughes <span class="fixture-vs">vs</span> Andrew Martin / Craig Brown</div>
+                        </div>
+                        <div class="fixture">
+                            <div class="fixture-teams">Paul Mitchell / Gary Stewart <span class="fixture-vs">vs</span> Stephen Clarke / Jamie Walsh</div>
+                        </div>
+                        <div class="fixture-note">Matches to be played on or before Friday 13<sup>th</sup> Feb</div>
+                    </div>
+
+                    <div id="week-B-2" class="fixtures-week">
+                        <div class="fixture">
+                            <div class="fixture-teams">Michael Thompson / Ryan Kelly <span class="fixture-vs">vs</span> Stephen Clarke / Jamie Walsh</div>
+                        </div>
+                        <div class="fixture">
+                            <div class="fixture-teams">Andrew Martin / Craig Brown <span class="fixture-vs">vs</span> Paul Mitchell / Gary Stewart</div>
+                        </div>
+                        <div class="fixture">
+                            <div class="fixture-teams">David Wilson / Mark Patterson <span class="fixture-vs">vs</span> Sean Murphy / Conor Hughes</div>
+                        </div>
+                        <div class="fixture-note">Matches to be played on or before Friday 20<sup>th</sup> Feb</div>
+                    </div>
+
+                    <div id="week-B-3" class="fixtures-week">
+                        <div class="fixture-note">Fixtures to be confirmed</div>
+                    </div>
+                    <div id="week-B-4" class="fixtures-week">
+                        <div class="fixture-note">Fixtures to be confirmed</div>
+                    </div>
+                    <div id="week-B-5" class="fixtures-week">
+                        <div class="fixture-note">Fixtures to be confirmed</div>
+                    </div>
+                    <div id="week-B-6" class="fixtures-week">
+                        <div class="fixture-note">Finals Week - Details to be announced</div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Group C Fixtures -->
+            <div id="fixtures-C" class="group-content">
+                <section class="section">
+                    <h2 class="section-title">Group C Fixtures</h2>
+
+                    <div class="week-selector">
+                        <button class="week-btn active" onclick="showWeek('C', 1)">Week 1</button>
+                        <button class="week-btn" onclick="showWeek('C', 2)">Week 2</button>
+                        <button class="week-btn" onclick="showWeek('C', 3)">Week 3</button>
+                        <button class="week-btn" onclick="showWeek('C', 4)">Week 4</button>
+                        <button class="week-btn" onclick="showWeek('C', 5)">Week 5</button>
+                        <button class="week-btn" onclick="showWeek('C', 6)">Week 6</button>
+                    </div>
+
+                    <div id="week-C-1" class="fixtures-week active">
+                        <div class="fixture">
+                            <div class="fixture-teams">Daniel O'Brien / Patrick Quinn <span class="fixture-vs">vs</span> Brendan Casey / Niall Doherty</div>
+                        </div>
+                        <div class="fixture">
+                            <div class="fixture-teams">Kieran Flynn / Declan Murray <span class="fixture-vs">vs</span> Oisin Kelly / Fionn McCarthy</div>
+                        </div>
+                        <div class="fixture">
+                            <div class="fixture-teams">Eoin Brennan / Cormac Gallagher <span class="fixture-vs">vs</span> Cathal Byrne / Ronan Duffy</div>
+                        </div>
+                        <div class="fixture-note">Matches to be played on or before Friday 13<sup>th</sup> Feb</div>
+                    </div>
+
+                    <div id="week-C-2" class="fixtures-week">
+                        <div class="fixture">
+                            <div class="fixture-teams">Daniel O'Brien / Patrick Quinn <span class="fixture-vs">vs</span> Cathal Byrne / Ronan Duffy</div>
+                        </div>
+                        <div class="fixture">
+                            <div class="fixture-teams">Oisin Kelly / Fionn McCarthy <span class="fixture-vs">vs</span> Eoin Brennan / Cormac Gallagher</div>
+                        </div>
+                        <div class="fixture">
+                            <div class="fixture-teams">Brendan Casey / Niall Doherty <span class="fixture-vs">vs</span> Kieran Flynn / Declan Murray</div>
+                        </div>
+                        <div class="fixture-note">Matches to be played on or before Friday 20<sup>th</sup> Feb</div>
+                    </div>
+
+                    <div id="week-C-3" class="fixtures-week">
+                        <div class="fixture-note">Fixtures to be confirmed</div>
+                    </div>
+                    <div id="week-C-4" class="fixtures-week">
+                        <div class="fixture-note">Fixtures to be confirmed</div>
+                    </div>
+                    <div id="week-C-5" class="fixtures-week">
+                        <div class="fixture-note">Fixtures to be confirmed</div>
+                    </div>
+                    <div id="week-C-6" class="fixtures-week">
+                        <div class="fixture-note">Finals Week - Details to be announced</div>
+                    </div>
+                </section>
+            </div>
         </div>
 
         <!-- Results Tab -->
         <div id="results" class="tab-content">
-            <section class="section">
-                <h2 class="section-title">Results</h2>
+            <div class="group-selector">
+                <button class="group-btn active" onclick="showGroup('results', 'A')">Group A</button>
+                <button class="group-btn" onclick="showGroup('results', 'B')">Group B</button>
+                <button class="group-btn" onclick="showGroup('results', 'C')">Group C</button>
+            </div>
 
-                <div class="week-selector">
-                    <button class="week-btn active" onclick="showResultsWeek(1)">Week 1</button>
-                    <button class="week-btn" onclick="showResultsWeek(2)">Week 2</button>
-                    <button class="week-btn" onclick="showResultsWeek(3)">Week 3</button>
-                    <button class="week-btn" onclick="showResultsWeek(4)">Week 4</button>
-                    <button class="week-btn" onclick="showResultsWeek(5)">Week 5</button>
-                    <button class="week-btn" onclick="showResultsWeek(6)">Week 6</button>
-                </div>
+            <!-- Group A Results -->
+            <div id="results-A" class="group-content active">
+                <section class="section">
+                    <h2 class="section-title">Group A Results</h2>
 
-                <!-- Week 1 Results -->
-                <div id="results-week-1" class="results-week active">
-                    <div class="result-card">
-                        <div class="result-match">
-                            <div class="result-team">
-                                <div class="result-team-name">Jack Lavery / James McKiver</div>
+                    <div class="week-selector">
+                        <button class="week-btn active" onclick="showResultsWeek('A', 1)">Week 1</button>
+                        <button class="week-btn" onclick="showResultsWeek('A', 2)">Week 2</button>
+                        <button class="week-btn" onclick="showResultsWeek('A', 3)">Week 3</button>
+                        <button class="week-btn" onclick="showResultsWeek('A', 4)">Week 4</button>
+                        <button class="week-btn" onclick="showResultsWeek('A', 5)">Week 5</button>
+                        <button class="week-btn" onclick="showResultsWeek('A', 6)">Week 6</button>
+                    </div>
+
+                    <div id="results-week-A-1" class="results-week active">
+                        <div class="result-card">
+                            <div class="result-match">
+                                <div class="result-team">
+                                    <div class="result-team-name">Jack Lavery / James McKiver</div>
+                                </div>
+                                <div class="result-score">
+                                    <div class="score-box">0</div>
+                                    <div class="score-divider">-</div>
+                                    <div class="score-box winner">2</div>
+                                </div>
+                                <div class="result-team winner">
+                                    <div class="result-team-name">Chris Moffett / Kevin O'Hare</div>
+                                </div>
                             </div>
-                            <div class="result-score">
-                                <div class="score-box">0</div>
-                                <div class="score-divider">-</div>
-                                <div class="score-box winner">2</div>
-                            </div>
-                            <div class="result-team winner">
-                                <div class="result-team-name">Chris Moffett / Kevin O'Hare</div>
-                            </div>
+                            <div class="result-time">Sets: 6-0, 6-0 | Thu 5th Feb 21:30</div>
                         </div>
-                        <div style="text-align: center; font-size: 0.75rem; color: #999; margin-top: 0.5rem;">
-                            Sets: 6-0, 6-0 | Thu 5th Feb
+
+                        <div class="fixture-note">2 results pending - Deadline Friday 13<sup>th</sup> Feb</div>
+                    </div>
+
+                    <div id="results-week-A-2" class="results-week">
+                        <div class="fixture-note">Results pending - Deadline Friday 20<sup>th</sup> Feb</div>
+                    </div>
+                    <div id="results-week-A-3" class="results-week">
+                        <div class="fixture-note">Results pending - Deadline Friday 27<sup>th</sup> Feb</div>
+                    </div>
+                    <div id="results-week-A-4" class="results-week">
+                        <div class="fixture-note">Results pending - Deadline Friday 6<sup>th</sup> March</div>
+                    </div>
+                    <div id="results-week-A-5" class="results-week">
+                        <div class="fixture-note">Results pending - Deadline Sunday 8<sup>th</sup> March</div>
+                    </div>
+                    <div id="results-week-A-6" class="results-week">
+                        <div class="fixture-note">Finals week - Details to be announced</div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Group B Results -->
+            <div id="results-B" class="group-content">
+                <section class="section">
+                    <h2 class="section-title">Group B Results</h2>
+
+                    <div class="week-selector">
+                        <button class="week-btn active" onclick="showResultsWeek('B', 1)">Week 1</button>
+                        <button class="week-btn" onclick="showResultsWeek('B', 2)">Week 2</button>
+                        <button class="week-btn" onclick="showResultsWeek('B', 3)">Week 3</button>
+                        <button class="week-btn" onclick="showResultsWeek('B', 4)">Week 4</button>
+                        <button class="week-btn" onclick="showResultsWeek('B', 5)">Week 5</button>
+                        <button class="week-btn" onclick="showResultsWeek('B', 6)">Week 6</button>
+                    </div>
+
+                    <div id="results-week-B-1" class="results-week active">
+                        <div class="result-card">
+                            <div class="result-match">
+                                <div class="result-team winner">
+                                    <div class="result-team-name">Michael Thompson / Ryan Kelly</div>
+                                </div>
+                                <div class="result-score">
+                                    <div class="score-box winner">2</div>
+                                    <div class="score-divider">-</div>
+                                    <div class="score-box">1</div>
+                                </div>
+                                <div class="result-team">
+                                    <div class="result-team-name">David Wilson / Mark Patterson</div>
+                                </div>
+                            </div>
+                            <div class="result-time">Sets: 6-4, 4-6, 6-2 | Wed 5th Feb</div>
+                        </div>
+                        <div class="result-card">
+                            <div class="result-match">
+                                <div class="result-team winner">
+                                    <div class="result-team-name">Sean Murphy / Conor Hughes</div>
+                                </div>
+                                <div class="result-score">
+                                    <div class="score-box winner">2</div>
+                                    <div class="score-divider">-</div>
+                                    <div class="score-box">0</div>
+                                </div>
+                                <div class="result-team">
+                                    <div class="result-team-name">Andrew Martin / Craig Brown</div>
+                                </div>
+                            </div>
+                            <div class="result-time">Sets: 6-3, 6-2 | Thu 6th Feb</div>
+                        </div>
+                        <div class="result-card">
+                            <div class="result-match">
+                                <div class="result-team">
+                                    <div class="result-team-name">Paul Mitchell / Gary Stewart</div>
+                                </div>
+                                <div class="result-score">
+                                    <div class="score-box">1</div>
+                                    <div class="score-divider">-</div>
+                                    <div class="score-box winner">2</div>
+                                </div>
+                                <div class="result-team winner">
+                                    <div class="result-team-name">Stephen Clarke / Jamie Walsh</div>
+                                </div>
+                            </div>
+                            <div class="result-time">Sets: 6-7, 6-4, 4-6 | Fri 7th Feb</div>
                         </div>
                     </div>
 
-                    <div class="fixture-note">
-                        2 results pending - Deadline Friday 13<sup>th</sup> Feb
+                    <div id="results-week-B-2" class="results-week">
+                        <div class="fixture-note">Results pending - Deadline Friday 20<sup>th</sup> Feb</div>
                     </div>
-                </div>
+                    <div id="results-week-B-3" class="results-week">
+                        <div class="fixture-note">Results pending</div>
+                    </div>
+                    <div id="results-week-B-4" class="results-week">
+                        <div class="fixture-note">Results pending</div>
+                    </div>
+                    <div id="results-week-B-5" class="results-week">
+                        <div class="fixture-note">Results pending</div>
+                    </div>
+                    <div id="results-week-B-6" class="results-week">
+                        <div class="fixture-note">Finals week - Details to be announced</div>
+                    </div>
+                </section>
+            </div>
 
-                <!-- Week 2 Results -->
-                <div id="results-week-2" class="results-week">
-                    <div class="fixture-note">
-                        Results pending - Deadline Friday 20<sup>th</sup> Feb
-                    </div>
-                </div>
+            <!-- Group C Results -->
+            <div id="results-C" class="group-content">
+                <section class="section">
+                    <h2 class="section-title">Group C Results</h2>
 
-                <!-- Week 3 Results -->
-                <div id="results-week-3" class="results-week">
-                    <div class="fixture-note">
-                        Results pending - Deadline Friday 27<sup>th</sup> Feb
+                    <div class="week-selector">
+                        <button class="week-btn active" onclick="showResultsWeek('C', 1)">Week 1</button>
+                        <button class="week-btn" onclick="showResultsWeek('C', 2)">Week 2</button>
+                        <button class="week-btn" onclick="showResultsWeek('C', 3)">Week 3</button>
+                        <button class="week-btn" onclick="showResultsWeek('C', 4)">Week 4</button>
+                        <button class="week-btn" onclick="showResultsWeek('C', 5)">Week 5</button>
+                        <button class="week-btn" onclick="showResultsWeek('C', 6)">Week 6</button>
                     </div>
-                </div>
 
-                <!-- Week 4 Results -->
-                <div id="results-week-4" class="results-week">
-                    <div class="fixture-note">
-                        Results pending - Deadline Friday 6<sup>th</sup> March
+                    <div id="results-week-C-1" class="results-week active">
+                        <div class="result-card">
+                            <div class="result-match">
+                                <div class="result-team winner">
+                                    <div class="result-team-name">Daniel O'Brien / Patrick Quinn</div>
+                                </div>
+                                <div class="result-score">
+                                    <div class="score-box winner">2</div>
+                                    <div class="score-divider">-</div>
+                                    <div class="score-box">0</div>
+                                </div>
+                                <div class="result-team">
+                                    <div class="result-team-name">Brendan Casey / Niall Doherty</div>
+                                </div>
+                            </div>
+                            <div class="result-time">Sets: 6-2, 6-1 | Tue 4th Feb</div>
+                        </div>
+                        <div class="result-card">
+                            <div class="result-match">
+                                <div class="result-team">
+                                    <div class="result-team-name">Kieran Flynn / Declan Murray</div>
+                                </div>
+                                <div class="result-score">
+                                    <div class="score-box">1</div>
+                                    <div class="score-divider">-</div>
+                                    <div class="score-box winner">2</div>
+                                </div>
+                                <div class="result-team winner">
+                                    <div class="result-team-name">Oisin Kelly / Fionn McCarthy</div>
+                                </div>
+                            </div>
+                            <div class="result-time">Sets: 6-3, 4-6, 6-4 | Wed 5th Feb</div>
+                        </div>
+                        <div class="result-card">
+                            <div class="result-match">
+                                <div class="result-team winner">
+                                    <div class="result-team-name">Eoin Brennan / Cormac Gallagher</div>
+                                </div>
+                                <div class="result-score">
+                                    <div class="score-box winner">2</div>
+                                    <div class="score-divider">-</div>
+                                    <div class="score-box">1</div>
+                                </div>
+                                <div class="result-team">
+                                    <div class="result-team-name">Cathal Byrne / Ronan Duffy</div>
+                                </div>
+                            </div>
+                            <div class="result-time">Sets: 4-6, 6-3, 6-2 | Thu 6th Feb</div>
+                        </div>
                     </div>
-                </div>
 
-                <!-- Week 5 Results -->
-                <div id="results-week-5" class="results-week">
-                    <div class="fixture-note">
-                        Results pending - Deadline Sunday 8<sup>th</sup> March
+                    <div id="results-week-C-2" class="results-week">
+                        <div class="fixture-note">Results pending - Deadline Friday 20<sup>th</sup> Feb</div>
                     </div>
-                </div>
-
-                <!-- Week 6 Results -->
-                <div id="results-week-6" class="results-week">
-                    <div class="fixture-note">
-                        Finals week - Details to be announced
+                    <div id="results-week-C-3" class="results-week">
+                        <div class="fixture-note">Results pending</div>
                     </div>
-                </div>
-            </section>
+                    <div id="results-week-C-4" class="results-week">
+                        <div class="fixture-note">Results pending</div>
+                    </div>
+                    <div id="results-week-C-5" class="results-week">
+                        <div class="fixture-note">Results pending</div>
+                    </div>
+                    <div id="results-week-C-6" class="results-week">
+                        <div class="fixture-note">Finals week - Details to be announced</div>
+                    </div>
+                </section>
+            </div>
         </div>
 
         <!-- Leaderboard Tab -->
         <div id="leaderboard" class="tab-content active">
-            <section class="section">
-                <h2 class="section-title">Leaderboard</h2>
+            <div class="group-selector">
+                <button class="group-btn active" onclick="showGroup('leaderboard', 'A')">Group A</button>
+                <button class="group-btn" onclick="showGroup('leaderboard', 'B')">Group B</button>
+                <button class="group-btn" onclick="showGroup('leaderboard', 'C')">Group C</button>
+            </div>
 
-                <table class="leaderboard-table">
-                    <thead>
-                        <tr>
-                            <th>Pos</th>
-                            <th class="team-name">Team</th>
-                            <th>P</th>
-                            <th>W</th>
-                            <th>L</th>
-                            <th>SF</th>
-                            <th>SA</th>
-                            <th>SD</th>
-                            <th>Pts</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="leaderboard-top-3">
-                            <td><span class="position-badge position-1">1</span></td>
-                            <td class="team-name">Chris Moffett / Kevin O'Hare</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>0</td>
-                            <td>2</td>
-                            <td>0</td>
-                            <td>+2</td>
-                            <td class="points">3</td>
-                        </tr>
-                        <tr>
-                            <td class="position">2</td>
-                            <td class="team-name">Jack Lavery / James McKiver</td>
-                            <td>1</td>
-                            <td>0</td>
-                            <td>1</td>
-                            <td>0</td>
-                            <td>2</td>
-                            <td>-2</td>
-                            <td class="points">1</td>
-                        </tr>
-                        <tr>
-                            <td class="position">-</td>
-                            <td class="team-name">James Harris / Lewis Deane</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td class="points">0</td>
-                        </tr>
-                        <tr>
-                            <td class="position">-</td>
-                            <td class="team-name">Adam Simms / Thomas Armstrong</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td class="points">0</td>
-                        </tr>
-                        <tr>
-                            <td class="position">-</td>
-                            <td class="team-name">Angus Boyle / Callum Mackie</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td class="points">0</td>
-                        </tr>
-                        <tr>
-                            <td class="position">-</td>
-                            <td class="team-name">Pete Boyle / Brian Dawson</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td class="points">0</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <!-- Group A Leaderboard -->
+            <div id="leaderboard-A" class="group-content active">
+                <section class="section">
+                    <h2 class="section-title">Group A Standings</h2>
 
-                <div class="scoring-info">
-                    <strong>Scoring System:</strong> Win 2-0 = 3 pts | Win 2-1 = 2 pts | Loss = 1 pt<br>
-                    <strong>Tiebreakers:</strong> Set Difference (SD) then Sets For (SF)
-                </div>
-            </section>
+                    <table class="leaderboard-table">
+                        <thead>
+                            <tr>
+                                <th>Pos</th>
+                                <th class="team-name">Team</th>
+                                <th>P</th>
+                                <th>W</th>
+                                <th>L</th>
+                                <th>SF</th>
+                                <th>SA</th>
+                                <th>SD</th>
+                                <th>Pts</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="leaderboard-top-3">
+                                <td><span class="position-badge position-1">1</span></td>
+                                <td class="team-name">Chris Moffett / Kevin O'Hare</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>2</td>
+                                <td>0</td>
+                                <td>+2</td>
+                                <td class="points">3</td>
+                            </tr>
+                            <tr>
+                                <td class="position">2</td>
+                                <td class="team-name">Jack Lavery / James McKiver</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>2</td>
+                                <td>-2</td>
+                                <td class="points">1</td>
+                            </tr>
+                            <tr>
+                                <td class="position">-</td>
+                                <td class="team-name">James Harris / Lewis Deane</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td class="points">0</td>
+                            </tr>
+                            <tr>
+                                <td class="position">-</td>
+                                <td class="team-name">Adam Simms / Thomas Armstrong</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td class="points">0</td>
+                            </tr>
+                            <tr>
+                                <td class="position">-</td>
+                                <td class="team-name">Angus Boyle / Callum Mackie</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td class="points">0</td>
+                            </tr>
+                            <tr>
+                                <td class="position">-</td>
+                                <td class="team-name">Pete Boyle / Brian Dawson</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td class="points">0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="scoring-info">
+                        <strong>Scoring System:</strong> Win 2-0 = 3 pts | Win 2-1 = 2 pts | Loss = 1 pt<br>
+                        <strong>Tiebreakers:</strong> Set Difference (SD) then Sets For (SF)
+                    </div>
+                </section>
+            </div>
+
+            <!-- Group B Leaderboard -->
+            <div id="leaderboard-B" class="group-content">
+                <section class="section">
+                    <h2 class="section-title">Group B Standings</h2>
+
+                    <table class="leaderboard-table">
+                        <thead>
+                            <tr>
+                                <th>Pos</th>
+                                <th class="team-name">Team</th>
+                                <th>P</th>
+                                <th>W</th>
+                                <th>L</th>
+                                <th>SF</th>
+                                <th>SA</th>
+                                <th>SD</th>
+                                <th>Pts</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="leaderboard-top-3">
+                                <td><span class="position-badge position-1">1</span></td>
+                                <td class="team-name">Sean Murphy / Conor Hughes</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>2</td>
+                                <td>0</td>
+                                <td>+2</td>
+                                <td class="points">3</td>
+                            </tr>
+                            <tr class="leaderboard-top-3">
+                                <td><span class="position-badge position-2">2</span></td>
+                                <td class="team-name">Michael Thompson / Ryan Kelly</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>2</td>
+                                <td>1</td>
+                                <td>+1</td>
+                                <td class="points">2</td>
+                            </tr>
+                            <tr class="leaderboard-top-3">
+                                <td><span class="position-badge position-3">3</span></td>
+                                <td class="team-name">Stephen Clarke / Jamie Walsh</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>2</td>
+                                <td>1</td>
+                                <td>+1</td>
+                                <td class="points">2</td>
+                            </tr>
+                            <tr>
+                                <td class="position">4</td>
+                                <td class="team-name">David Wilson / Mark Patterson</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>-1</td>
+                                <td class="points">1</td>
+                            </tr>
+                            <tr>
+                                <td class="position">5</td>
+                                <td class="team-name">Paul Mitchell / Gary Stewart</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>-1</td>
+                                <td class="points">1</td>
+                            </tr>
+                            <tr>
+                                <td class="position">6</td>
+                                <td class="team-name">Andrew Martin / Craig Brown</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>2</td>
+                                <td>-2</td>
+                                <td class="points">1</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="scoring-info">
+                        <strong>Scoring System:</strong> Win 2-0 = 3 pts | Win 2-1 = 2 pts | Loss = 1 pt<br>
+                        <strong>Tiebreakers:</strong> Set Difference (SD) then Sets For (SF)
+                    </div>
+                </section>
+            </div>
+
+            <!-- Group C Leaderboard -->
+            <div id="leaderboard-C" class="group-content">
+                <section class="section">
+                    <h2 class="section-title">Group C Standings</h2>
+
+                    <table class="leaderboard-table">
+                        <thead>
+                            <tr>
+                                <th>Pos</th>
+                                <th class="team-name">Team</th>
+                                <th>P</th>
+                                <th>W</th>
+                                <th>L</th>
+                                <th>SF</th>
+                                <th>SA</th>
+                                <th>SD</th>
+                                <th>Pts</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="leaderboard-top-3">
+                                <td><span class="position-badge position-1">1</span></td>
+                                <td class="team-name">Daniel O'Brien / Patrick Quinn</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>2</td>
+                                <td>0</td>
+                                <td>+2</td>
+                                <td class="points">3</td>
+                            </tr>
+                            <tr class="leaderboard-top-3">
+                                <td><span class="position-badge position-2">2</span></td>
+                                <td class="team-name">Eoin Brennan / Cormac Gallagher</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>2</td>
+                                <td>1</td>
+                                <td>+1</td>
+                                <td class="points">2</td>
+                            </tr>
+                            <tr class="leaderboard-top-3">
+                                <td><span class="position-badge position-3">3</span></td>
+                                <td class="team-name">Oisin Kelly / Fionn McCarthy</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>2</td>
+                                <td>1</td>
+                                <td>+1</td>
+                                <td class="points">2</td>
+                            </tr>
+                            <tr>
+                                <td class="position">4</td>
+                                <td class="team-name">Cathal Byrne / Ronan Duffy</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>-1</td>
+                                <td class="points">1</td>
+                            </tr>
+                            <tr>
+                                <td class="position">5</td>
+                                <td class="team-name">Kieran Flynn / Declan Murray</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>-1</td>
+                                <td class="points">1</td>
+                            </tr>
+                            <tr>
+                                <td class="position">6</td>
+                                <td class="team-name">Brendan Casey / Niall Doherty</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>2</td>
+                                <td>-2</td>
+                                <td class="points">1</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="scoring-info">
+                        <strong>Scoring System:</strong> Win 2-0 = 3 pts | Win 2-1 = 2 pts | Loss = 1 pt<br>
+                        <strong>Tiebreakers:</strong> Set Difference (SD) then Sets For (SF)
+                    </div>
+                </section>
+            </div>
         </div>
     </div>
 
@@ -842,25 +1351,39 @@
             event.target.classList.add('active');
         }
 
-        function showWeek(weekNum) {
-            document.querySelectorAll('.fixtures-week').forEach(week => {
-                week.classList.remove('active');
+        function showGroup(tab, group) {
+            const container = document.getElementById(tab);
+            container.querySelectorAll('.group-content').forEach(content => {
+                content.classList.remove('active');
             });
-            document.querySelectorAll('#fixtures .week-btn').forEach(btn => {
+            container.querySelectorAll('.group-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
-            document.getElementById('week-' + weekNum).classList.add('active');
+            document.getElementById(tab + '-' + group).classList.add('active');
             event.target.classList.add('active');
         }
 
-        function showResultsWeek(weekNum) {
-            document.querySelectorAll('.results-week').forEach(week => {
+        function showWeek(group, weekNum) {
+            const container = document.getElementById('fixtures-' + group);
+            container.querySelectorAll('.fixtures-week').forEach(week => {
                 week.classList.remove('active');
             });
-            document.querySelectorAll('#results .week-btn').forEach(btn => {
+            container.querySelectorAll('.week-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
-            document.getElementById('results-week-' + weekNum).classList.add('active');
+            document.getElementById('week-' + group + '-' + weekNum).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function showResultsWeek(group, weekNum) {
+            const container = document.getElementById('results-' + group);
+            container.querySelectorAll('.results-week').forEach(week => {
+                week.classList.remove('active');
+            });
+            container.querySelectorAll('.week-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById('results-week-' + group + '-' + weekNum).classList.add('active');
             event.target.classList.add('active');
         }
     </script>
