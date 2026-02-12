@@ -151,7 +151,10 @@
             border-bottom: 1px solid rgba(255,255,255,0.08);
             gap: 0.5rem;
             flex-wrap: wrap;
+            cursor: pointer;
+            user-select: none;
         }
+        .panel.collapsed .panel-header { border-bottom: none; }
 
         .panel-title {
             font-size: 0.9rem;
@@ -161,6 +164,14 @@
             color: #a3e635;
         }
 
+        .panel-chevron {
+            font-size: 0.7rem;
+            color: #666;
+            transition: transform 0.2s;
+            margin-right: 0.5rem;
+        }
+        .panel.collapsed .panel-chevron { transform: rotate(-90deg); }
+
         .panel-count {
             font-size: 0.75rem;
             color: #666;
@@ -168,6 +179,14 @@
 
         .panel-body {
             padding: 1rem 1.25rem;
+            transition: max-height 0.3s ease, padding 0.3s ease, opacity 0.2s ease;
+            overflow: hidden;
+        }
+        .panel.collapsed .panel-body {
+            max-height: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+            opacity: 0;
         }
 
         /* Data table */
@@ -428,6 +447,10 @@
     // HELPERS
     // =========================================================================
 
+    function togglePanel(headerEl) {
+        headerEl.closest('.panel').classList.toggle('collapsed');
+    }
+
     function toast(msg) {
         const el = document.getElementById('toast');
         el.textContent = msg;
@@ -630,7 +653,8 @@
         }
 
         return `<div class="panel">
-            <div class="panel-header">
+            <div class="panel-header" onclick="togglePanel(this)">
+                <span class="panel-chevron">&#9660;</span>
                 <span class="panel-title">Schedule</span>
                 <span class="panel-count">${schedule.length} weeks</span>
             </div>
@@ -700,7 +724,8 @@
         }
 
         return `<div class="panel">
-            <div class="panel-header">
+            <div class="panel-header" onclick="togglePanel(this)">
+                <span class="panel-chevron">&#9660;</span>
                 <span class="panel-title">Group ${group} Teams</span>
                 <span class="panel-count">${teams.length} teams</span>
             </div>
@@ -784,7 +809,8 @@
         }
 
         return `<div class="panel">
-            <div class="panel-header">
+            <div class="panel-header" onclick="togglePanel(this)">
+                <span class="panel-chevron">&#9660;</span>
                 <span class="panel-title">Fixtures</span>
                 <span class="panel-count">${totalResults}/${totalFixtures} played</span>
             </div>
@@ -796,8 +822,9 @@
         if (teams.length < 2) return '';
         const teamOptions = teams.map(t => `<option value="${t}">${t}</option>`).join('');
 
-        return `<div class="panel">
-            <div class="panel-header">
+        return `<div class="panel collapsed">
+            <div class="panel-header" onclick="togglePanel(this)">
+                <span class="panel-chevron">&#9660;</span>
                 <span class="panel-title">Add Fixture</span>
             </div>
             <div class="panel-body">
@@ -878,7 +905,8 @@
         }
 
         return `<div class="panel">
-            <div class="panel-header">
+            <div class="panel-header" onclick="togglePanel(this)">
+                <span class="panel-chevron">&#9660;</span>
                 <span class="panel-title">Results</span>
                 <span class="panel-count">${count} results</span>
             </div>
@@ -915,8 +943,9 @@
             `<option value="${i}">W${p.week}: ${p.team1} vs ${p.team2}</option>`
         ).join('');
 
-        return `<div class="panel">
-            <div class="panel-header">
+        return `<div class="panel collapsed">
+            <div class="panel-header" onclick="togglePanel(this)">
+                <span class="panel-chevron">&#9660;</span>
                 <span class="panel-title">Add Result</span>
                 <span class="panel-count">${pending.length} pending</span>
             </div>
